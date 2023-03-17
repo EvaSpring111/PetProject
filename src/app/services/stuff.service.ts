@@ -6,18 +6,19 @@ import { catchError } from 'rxjs/operators';
 import * as rxjs from 'rxjs';
 import { Stuff } from 'src/app/model/Stuff.model';
 import { DeviceDescription } from 'src/app/model/DeviceDescription.model';
+import { environment } from '../environments/environment.prod';
 
 @Injectable({ providedIn: 'root' })
 
 export class StuffService {
 
-  private clientUrl: string = 'https://mate-academy.github.io/react_phone-catalog/api/products.json';
+  // private clientUrl: string = 'https://mate-academy.github.io/react_phone-catalog/api/products.json';
   private Url: string = 'https://mate-academy.github.io/react_phone-catalog/api/products';
 
   constructor(private http: HttpClient) {}
 
   getStuff(): Observable<Stuff[]> {
-   return this.http.get<Stuff[]>(this.clientUrl)
+   return this.http.get<Stuff[]>(`${environment.clientUrl}`)
   }
 
   getDevice(id: string | null): Observable<DeviceDescription> {
@@ -33,11 +34,11 @@ export class StuffService {
 
   searchStuff(data: string): Observable<Stuff[]> {
     if(data.trim()!==""){
-     return this.http.get<Stuff[]>(`${this.clientUrl}/?name=${data.trim()}`).pipe(
+     return this.http.get<Stuff[]>(`${environment.clientUrl}/?name=${data.trim()}`).pipe(
        catchError(this.handleError)
      );
     } else {
-     return this.http.get<Stuff[]>(this.clientUrl).pipe(
+     return this.http.get<Stuff[]>(environment.clientUrl).pipe(
        catchError(this.handleError)
      );
      }
