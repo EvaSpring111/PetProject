@@ -1,5 +1,5 @@
 
-https://evaspring111.github.io/PetProject/PetProject/home
+https://evaspring111.github.io/PetProject/home
 # MyStore
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
